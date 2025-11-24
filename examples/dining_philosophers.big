@@ -1,0 +1,60 @@
+# Simple dining philosophers example -- no mutual exclusion so can eventually deadlock!
+
+# Philosophers are connected to the forks they can pick up
+# Note we don't have a "left/right" fork in this version, just pick up the two eventually
+# This can be added by extra controls: Philosopher.(L{f1} | R{f2}) etc
+atomic ctrl Fork = 1;
+ctrl Philosopher = 2;
+
+atomic ctrl Thinking = 0;
+atomic ctrl Eating = 0;
+
+ctrl Table = 0;
+
+# The initial table setup, 5 Philosophers and 5 forks
+big table = /f1/f2/f3/f4/f5 (
+  Philosopher{f1,f2}.Thinking
+| Philosopher{f2,f3}.Thinking
+| Philosopher{f3,f4}.Thinking
+| Philosopher{f4,f5}.Thinking
+| Philosopher{f5,f1}.Thinking
+|| Table.(Fork{f1} | Fork{f2} | Fork{f3} | Fork{f4} | Fork{f5}));
+
+
+# If there's a fork on the table we can pick it up
+react pickup =
+  Philosopher{l,r}.(Thinking | id) || Table.(Fork{l} | id)
+  -->
+  Philosopher{l,r}.(Fork{l} | Thinking | id) || Table.id;
+
+# Eat once you have two forks
+react eat =
+  Philosopher{l,r}.(Fork{l} | Fork{r} | Thinking)
+  -->
+  Philosopher{l,r}.(Fork{l} | Fork{r} | Eating);
+
+# Put down forks once you are done eating
+react put_down =
+  Philosopher{l,r}.(Eating | Fork{l} | id) || Table.id
+  -->
+  Philosopher{l,r}.(Eating | id) || Table.(id | Fork{l});
+
+# Think once you put down the forks
+react think =
+  Philosopher{l,r}.Eating || Table.(Fork{l} | Fork{r} | id)
+  -->
+  Philosopher{l,r}.Thinking || Table.(Fork{l} | Fork{r} | id);
+
+# Deadlock detection, no progress since they are waiting for other forks to be available
+big deadlock =
+  Philosopher{f1,f2}.(Fork{f1} | Thinking)
+| Philosopher{f2,f3}.(Fork{f2} | Thinking)
+| Philosopher{f3,f4}.(Fork{f3} | Thinking)
+| Philosopher{f4,f5}.(Fork{f4} | Thinking)
+| Philosopher{f5,f1}.(Fork{f5} | Thinking);
+
+begin brs
+  init table;
+  rules = [{pickup, eat, put_down, think}];
+  preds = {deadlock};
+end
