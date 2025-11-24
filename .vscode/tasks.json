@@ -1,0 +1,21 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build JSON Grammar",
+            "type": "shell",
+            "command": "npx js-yaml syntaxes/bigrapher.tmLanguage.yaml > syntaxes/bigrapher.tmLanguage.json"
+        },
+        {
+            "label": "Build and Install Extension",
+            "type":"shell",
+            "command": "vsce pack && code --install-extension bigrapher-syntax-0.0.1.vsix ",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

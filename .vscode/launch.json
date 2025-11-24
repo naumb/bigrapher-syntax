@@ -10,8 +10,10 @@
 			"type": "extensionHost",
 			"request": "launch",
 			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
-			]
+				"--extensionDevelopmentPath=${workspaceFolder}",
+				"${workspaceFolder}/examples/dining_philosophers.big"
+			],
+			"preLaunchTask": "Build JSON Grammar"
 		}
 	]
 }
