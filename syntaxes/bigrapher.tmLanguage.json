@@ -136,6 +136,10 @@
         {
           "name": "variable.other.readwrite.link-name.bigrapher",
           "match": "[a-z][a-zA-Z0-9_-]*"
+        },
+        {
+          "name": "constant.numeric.bigrapher",
+          "match": "\\b\\d+\\b"
         }
       ]
     }
