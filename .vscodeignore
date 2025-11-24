@@ -2,3 +2,7 @@
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
+README.md
+syntaxes/bigrapher.tmLanguage.yaml
+example.png
+examples/dining_philosophers.big

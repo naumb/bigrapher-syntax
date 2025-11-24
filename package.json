@@ -3,6 +3,7 @@
   "displayName": "bigrapher-syntax",
   "description": "Bigrapher Syntax Highlighting",
   "version": "0.0.1",
+  "repository": "https://github.com/naumb/bigrapher-syntax",
   "engines": {
     "vscode": "^1.106.1"
   },
@@ -10,16 +11,28 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "bigrapher",
-      "aliases": ["Bigrapher", "bigrapher"],
-      "extensions": [".big"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "bigrapher",
-      "scopeName": "source.bigrapher",
-      "path": "./syntaxes/bigrapher.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "bigrapher",
+        "aliases": [
+          "Bigrapher",
+          "bigrapher"
+        ],
+        "extensions": [
+          ".big"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "bigrapher",
+        "scopeName": "source.bigrapher",
+        "path": "./syntaxes/bigrapher.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.1"
   }
 }
