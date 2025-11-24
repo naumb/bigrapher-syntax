@@ -16,6 +16,9 @@
     },
     {
       "include": "#entities"
+    },
+    {
+      "include": "#strings"
     }
   ],
   "repository": {
@@ -64,12 +67,27 @@
               "include": "#comments"
             },
             {
+              "include": "#keywords"
+            },
+            {
+              "include": "#strings"
+            },
+            {
               "include": "#operators"
             },
             {
               "include": "#entities"
             }
           ]
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.bigrapher",
+          "begin": "\"",
+          "end": "\""
         }
       ]
     },
@@ -104,6 +122,10 @@
               "name": "variable.other.constant.reaction-rule-name.bigrapher"
             }
           }
+        },
+        {
+          "match": "\\b(string|int|float)\\b",
+          "name": "storage.type.bigrapher"
         }
       ]
     },
