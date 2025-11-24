@@ -16,6 +16,8 @@ Additionally:
 - Bigraph Definition
 - Reaction Rule Definition
 - BRS Block
+- Datatypes (`string`, `int`, `float`)
+- Parameterization (`fun`) 
 
 ![Highlighting](example.png)
 
