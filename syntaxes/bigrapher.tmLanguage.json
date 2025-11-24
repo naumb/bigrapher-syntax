@@ -6,6 +6,18 @@
       "include": "#comments"
     },
     {
+      "include": "#controls"
+    },
+    {
+      "include": "#control-definition"
+    },
+    {
+      "include": "#bigraph-definition"
+    },
+    {
+      "include": "#react-definition"
+    },
+    {
       "include": "#keywords"
     },
     {
@@ -28,6 +40,105 @@
           "name": "comment.line.bigrapher",
           "begin": "#",
           "end": "$"
+        }
+      ]
+    },
+    "control-definition": {
+      "patterns": [
+        {
+          "match": "(atomic\\s+)?(ctrl)\\s+([A-Z][a-zA-Z0-9_-]*)\\s+=\\s+(\\d+);",
+          "captures": {
+            "1": {
+              "name": "keyword.control.atomic.bigrapher"
+            },
+            "2": {
+              "name": "keyword.control.control.bigrapher"
+            },
+            "3": {
+              "name": "entity.name.class.control-name.bigrapher"
+            },
+            "4": {
+              "name": "constant.numeric.bigrapher"
+            }
+          }
+        },
+        {
+          "match": "(atomic\\s+)?(fun\\s+ctrl)\\s+([A-Z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)\\s+=\\s+(\\d+);",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.parameterized.atomic.bigrapher"
+            },
+            "2": {
+              "name": "entity.name.function.parameterized.control.bigrapher"
+            },
+            "3": {
+              "name": "entity.name.class.control-name.bigrapher"
+            },
+            "4": {
+              "name": "variable.parameter.control-parameter.bigrapher"
+            },
+            "5": {
+              "name": "constant.numeric.bigrapher"
+            }
+          }
+        }
+      ]
+    },
+    "bigraph-definition": {
+      "patterns": [
+        {
+          "match": "(big)\\s+([a-z][a-zA-Z0-9_-]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.bigraph-definition.bigrapher"
+            },
+            "2": {
+              "name": "variable.other.constant.bigraph-name.bigrapher"
+            }
+          }
+        },
+        {
+          "match": "(fun\\s+big)\\s+([a-z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.parameterized.bigraph-definition.bigrapher"
+            },
+            "2": {
+              "name": "variable.other.constant.bigraph-name.bigrapher"
+            },
+            "3": {
+              "name": "variable.parameter.bigraph-parameter.bigrapher"
+            }
+          }
+        }
+      ]
+    },
+    "react-definition": {
+      "patterns": [
+        {
+          "match": "(react)\\s+([a-z][a-zA-Z0-9_-]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.reaction-rule-definition.bigrapher"
+            },
+            "2": {
+              "name": "variable.other.constant.reaction-rule-name.bigrapher"
+            }
+          }
+        },
+        {
+          "match": "(fun\\s+react)\\s+([a-z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.parameterized.reaction-rule-definition.bigrapher"
+            },
+            "2": {
+              "name": "variable.other.constant.reaction-rule-name.bigrapher"
+            },
+            "3": {
+              "name": "variable.parameter.reaction-rule-parameter.bigrapher"
+            }
+          }
         }
       ]
     },
@@ -93,36 +204,6 @@
     },
     "keywords": {
       "patterns": [
-        {
-          "name": "keyword.control.control.bigrapher",
-          "match": "(atomic\\s+)?ctrl"
-        },
-        {
-          "name": "entity.name.function.parameterized.bigrapher",
-          "match": "fun"
-        },
-        {
-          "match": "(big)\\s+([a-z][a-zA-Z0-9_-]*)",
-          "captures": {
-            "1": {
-              "name": "keyword.control.bigraph-definition.bigrapher"
-            },
-            "2": {
-              "name": "variable.other.constant.bigraph-name.bigrapher"
-            }
-          }
-        },
-        {
-          "match": "(react)\\s+([a-z][a-zA-Z0-9_-]*)",
-          "captures": {
-            "1": {
-              "name": "keyword.control.reaction-rule-definition.bigrapher"
-            },
-            "2": {
-              "name": "variable.other.constant.reaction-rule-name.bigrapher"
-            }
-          }
-        },
         {
           "match": "\\b(string|int|float)\\b",
           "name": "storage.type.bigrapher"
