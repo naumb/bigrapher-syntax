@@ -39,6 +39,8 @@ repository:
     patterns:
       - name: keyword.control.control.bigrapher
         match: "(atomic\\s+)?ctrl"
+      - name: entity.name.function.parameterized.bigrapher
+        match: "fun"
       - match: "(big)\\s+([a-z][a-zA-Z0-9_-]*)"
         captures: 
           1: 
