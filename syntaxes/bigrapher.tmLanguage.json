@@ -80,10 +80,10 @@
           "end": ";",
           "beginCaptures": {
             "1": {
-              "name": "entity.name.function.parameterized.atomic.bigrapher"
+              "name": "keyword.control.parameterized.atomic.bigrapher"
             },
             "2": {
-              "name": "entity.name.function.parameterized.control.bigrapher"
+              "name": "keyword.control.parameterized.control.bigrapher"
             }
           },
           "endCaptures": {
@@ -154,7 +154,7 @@
           "end": ";",
           "beginCaptures": {
             "1": {
-              "name": "entity.name.function.parameterized.bigraph-definition.bigrapher"
+              "name": "keyword.control.parameterized.bigraph-definition.bigrapher"
             },
             "2": {
               "name": "variable.other.constant.bigraph-name.bigrapher"
@@ -231,7 +231,7 @@
           "end": ";",
           "beginCaptures": {
             "1": {
-              "name": "entity.name.function.parameterized.reaction-rule-definition.bigrapher"
+              "name": "keyword.control.parameterized.reaction-rule-definition.bigrapher"
             },
             "2": {
               "name": "variable.other.constant.reaction-rule-name.bigrapher"

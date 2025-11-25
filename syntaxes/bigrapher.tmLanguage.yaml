@@ -40,9 +40,9 @@ repository:
         end: ";"
         beginCaptures:
           1:
-            name: entity.name.function.parameterized.atomic.bigrapher
+            name: keyword.control.parameterized.atomic.bigrapher
           2:
-            name: entity.name.function.parameterized.control.bigrapher
+            name: keyword.control.parameterized.control.bigrapher
         endCaptures:
           1:
             name: punctuation.terminator.parameterized-control-definition.bigrapher
@@ -77,7 +77,7 @@ repository:
         end: ";"
         beginCaptures:
           "1":
-            name: entity.name.function.parameterized.bigraph-definition.bigrapher
+            name: keyword.control.parameterized.bigraph-definition.bigrapher
           "2":
             name: variable.other.constant.bigraph-name.bigrapher
           "3":
@@ -115,7 +115,7 @@ repository:
         end: ";"
         beginCaptures:
           1:
-            name: entity.name.function.parameterized.reaction-rule-definition.bigrapher
+            name: keyword.control.parameterized.reaction-rule-definition.bigrapher
           2:
             name: variable.other.constant.reaction-rule-name.bigrapher
           3:
