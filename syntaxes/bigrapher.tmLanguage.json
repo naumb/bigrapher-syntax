@@ -6,9 +6,6 @@
       "include": "#comments"
     },
     {
-      "include": "#controls"
-    },
-    {
       "include": "#control-definition"
     },
     {
@@ -18,19 +15,16 @@
       "include": "#react-definition"
     },
     {
-      "include": "#keywords"
+      "include": "#brs-definition"
     },
     {
-      "include": "#brs-definition"
+      "include": "#keywords"
     },
     {
       "include": "#operators"
     },
     {
       "include": "#entities"
-    },
-    {
-      "include": "#strings"
     }
   ],
   "repository": {
@@ -46,60 +40,119 @@
     "control-definition": {
       "patterns": [
         {
-          "match": "(atomic\\s+)?(ctrl)\\s+([A-Z][a-zA-Z0-9_-]*)\\s+=\\s+(\\d+);",
-          "captures": {
+          "name": "meta.block.control-definition.bigrapher",
+          "begin": "(atomic\\s+)?(ctrl)",
+          "end": ";",
+          "beginCaptures": {
             "1": {
               "name": "keyword.control.atomic.bigrapher"
             },
             "2": {
               "name": "keyword.control.control.bigrapher"
-            },
-            "3": {
-              "name": "entity.name.class.control-name.bigrapher"
-            },
-            "4": {
-              "name": "constant.numeric.bigrapher"
             }
-          }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.terminator.control-definition.bigrapher"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#operators"
+            },
+            {
+              "include": "#entities"
+            },
+            {
+              "include": "#strings"
+            }
+          ]
         },
         {
-          "match": "(atomic\\s+)?(fun\\s+ctrl)\\s+([A-Z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)\\s+=\\s+(\\d+);",
-          "captures": {
+          "name": "meta.block.parameterized-control-definition.bigrapher",
+          "begin": "(atomic\\s+)?(fun\\s+ctrl)",
+          "end": ";",
+          "beginCaptures": {
             "1": {
               "name": "entity.name.function.parameterized.atomic.bigrapher"
             },
             "2": {
               "name": "entity.name.function.parameterized.control.bigrapher"
-            },
-            "3": {
-              "name": "entity.name.class.control-name.bigrapher"
-            },
-            "4": {
-              "name": "variable.parameter.control-parameter.bigrapher"
-            },
-            "5": {
-              "name": "constant.numeric.bigrapher"
             }
-          }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.terminator.parameterized-control-definition.bigrapher"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#operators"
+            },
+            {
+              "include": "#entities"
+            },
+            {
+              "include": "#strings"
+            }
+          ]
         }
       ]
     },
     "bigraph-definition": {
       "patterns": [
         {
-          "match": "(big)\\s+([a-z][a-zA-Z0-9_-]*)",
-          "captures": {
+          "name": "meta.block.bigraph-definition.bigrapher",
+          "begin": "(big)\\s+([a-z][a-zA-Z0-9_'-]*)\\s*=",
+          "end": ";",
+          "beginCaptures": {
             "1": {
               "name": "keyword.control.bigraph-definition.bigrapher"
             },
             "2": {
               "name": "variable.other.constant.bigraph-name.bigrapher"
             }
-          }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.terminator.bigraph-definition.bigrapher"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#operators"
+            },
+            {
+              "include": "#entities"
+            },
+            {
+              "include": "#strings"
+            }
+          ]
         },
         {
-          "match": "(fun\\s+big)\\s+([a-z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)",
-          "captures": {
+          "name": "meta.block.parameterized-bigraph-definition.bigrapher",
+          "begin": "(fun\\s+big)\\s+([a-z][a-zA-Z0-9_'-]*)\\(([a-z][a-zA-Z0-9_'-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_'-]*)*)\\)\\s*=",
+          "end": ";",
+          "beginCaptures": {
             "1": {
               "name": "entity.name.function.parameterized.bigraph-definition.bigrapher"
             },
@@ -109,26 +162,74 @@
             "3": {
               "name": "variable.parameter.bigraph-parameter.bigrapher"
             }
-          }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.terminator.bigraph-definition.bigrapher"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#operators"
+            },
+            {
+              "include": "#entities"
+            },
+            {
+              "include": "#strings"
+            }
+          ]
         }
       ]
     },
     "react-definition": {
       "patterns": [
         {
-          "match": "(react)\\s+([a-z][a-zA-Z0-9_-]*)",
-          "captures": {
+          "name": "meta.block.reaction-rule-definition.bigrapher",
+          "begin": "(react)\\s+([a-z][a-zA-Z0-9_'-]*)\\s*=",
+          "end": ";",
+          "beginCaptures": {
             "1": {
               "name": "keyword.control.reaction-rule-definition.bigrapher"
             },
             "2": {
               "name": "variable.other.constant.reaction-rule-name.bigrapher"
             }
-          }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.terminator.reaction-rule-definition.bigrapher"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#operators"
+            },
+            {
+              "include": "#entities"
+            },
+            {
+              "include": "#strings"
+            }
+          ]
         },
         {
-          "match": "(fun\\s+react)\\s+([a-z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)",
-          "captures": {
+          "name": "meta.block.parameterized-reaction-rule-definition.bigrapher",
+          "begin": "(fun\\s+react)\\s+([a-z][a-zA-Z0-9_'-]*)\\(([a-z][a-zA-Z0-9_'-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_'-]*)*)\\)\\s*=",
+          "end": ";",
+          "beginCaptures": {
             "1": {
               "name": "entity.name.function.parameterized.reaction-rule-definition.bigrapher"
             },
@@ -138,7 +239,29 @@
             "3": {
               "name": "variable.parameter.reaction-rule-parameter.bigrapher"
             }
-          }
+          },
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.terminator.reaction-rule-definition.bigrapher"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "include": "#keywords"
+            },
+            {
+              "include": "#operators"
+            },
+            {
+              "include": "#entities"
+            },
+            {
+              "include": "#strings"
+            }
+          ]
         }
       ]
     },
@@ -146,7 +269,7 @@
       "patterns": [
         {
           "name": "meta.block.brs-definition.bigrapher",
-          "begin": "\\b(begin)\\s+(brs)\\b",
+          "begin": "\\b(begin)\\s+(sbrs|pbrs|abrs|brs)\\b",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.begin.bigrapher"
@@ -175,6 +298,10 @@
               "match": "\\bpreds\\b"
             },
             {
+              "name": "keyword.control.actions.brs.bigrapher",
+              "match": "\\bactions\\b"
+            },
+            {
               "include": "#comments"
             },
             {
@@ -193,20 +320,15 @@
         }
       ]
     },
-    "strings": {
-      "patterns": [
-        {
-          "name": "string.quoted.double.bigrapher",
-          "begin": "\"",
-          "end": "\""
-        }
-      ]
-    },
     "keywords": {
       "patterns": [
         {
           "match": "\\b(string|int|float)\\b",
           "name": "storage.type.bigrapher"
+        },
+        {
+          "match": "\\b(share|by|in|ctx|param|if)\\b",
+          "name": "keyword.control.other.bigrapher"
         }
       ]
     },
@@ -231,6 +353,20 @@
         {
           "name": "keyword.operator.hiding.bigrapher",
           "match": "\\/"
+        },
+        {
+          "name": "keyword.operator.reaction.bigrapher",
+          "match": "(-->|->)"
+        },
+        {
+          "name": "keyword.operator.reaction-with-rate.bigrapher",
+          "begin": "-\\[",
+          "end": "\\]->",
+          "patterns": [
+            {
+              "include": "#entities"
+            }
+          ]
         }
       ]
     },
@@ -238,15 +374,24 @@
       "patterns": [
         {
           "name": "entity.name.class.control-name.bigrapher",
-          "match": "[A-Z][a-zA-Z0-9_-]*"
+          "match": "[A-Z][a-zA-Z0-9_'-]*"
         },
         {
           "name": "variable.other.readwrite.link-name.bigrapher",
-          "match": "[a-z][a-zA-Z0-9_-]*"
+          "match": "[a-z][a-zA-Z0-9_'-]*"
         },
         {
           "name": "constant.numeric.bigrapher",
           "match": "\\b\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.float.bigrapher",
+          "match": "\\b\\d+\\.\\d+\\b"
+        },
+        {
+          "name": "string.quoted.double.bigrapher",
+          "begin": "\"",
+          "end": "\""
         }
       ]
     }

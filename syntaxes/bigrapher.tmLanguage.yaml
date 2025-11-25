@@ -2,7 +2,6 @@ name: "Bigrapher"
 scopeName: "source.bigrapher"
 patterns:
   - include: "#comments"
-  - include: "#controls"
   - include: "#control-definition"
   - include: "#bigraph-definition"
   - include: "#react-definition"
@@ -10,7 +9,7 @@ patterns:
   - include: "#keywords"
   - include: "#operators"
   - include: "#entities"
-  - include: "#strings"
+
 repository:
   comments:
     patterns:
@@ -19,72 +18,129 @@ repository:
         end: $
   control-definition:
     patterns:
-      - match: "(atomic\\s+)?(ctrl)\\s+([A-Z][a-zA-Z0-9_-]*)\\s+=\\s+(\\d+);"
-        captures:
+      - name: meta.block.control-definition.bigrapher
+        begin: "(atomic\\s+)?(ctrl)"
+        end: ";"
+        beginCaptures:
           1:
             name: keyword.control.atomic.bigrapher
-          2: 
+          2:
             name: keyword.control.control.bigrapher
-          3:
-            name: entity.name.class.control-name.bigrapher
-          4:
-            name: constant.numeric.bigrapher
-      - match: "(atomic\\s+)?(fun\\s+ctrl)\\s+([A-Z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)\\s+=\\s+(\\d+);"
-        captures:
+        endCaptures:
+          1:
+            name: punctuation.terminator.control-definition.bigrapher
+        patterns:
+          - include: "#comments"
+          - include: "#keywords"
+          - include: "#operators"
+          - include: "#entities"
+          - include: "#strings"
+      - name: meta.block.parameterized-control-definition.bigrapher
+        begin: "(atomic\\s+)?(fun\\s+ctrl)"
+        end: ";"
+        beginCaptures:
           1:
             name: entity.name.function.parameterized.atomic.bigrapher
-          2: 
+          2:
             name: entity.name.function.parameterized.control.bigrapher
-          3:
-            name: entity.name.class.control-name.bigrapher
-          4: 
-            name: variable.parameter.control-parameter.bigrapher
-          5:
-            name: constant.numeric.bigrapher
+        endCaptures:
+          1:
+            name: punctuation.terminator.parameterized-control-definition.bigrapher
+        patterns:
+          - include: "#comments"
+          - include: "#keywords"
+          - include: "#operators"
+          - include: "#entities"
+          - include: "#strings"
   bigraph-definition:
     patterns:
-      - match: "(big)\\s+([a-z][a-zA-Z0-9_-]*)"
-        captures: 
-          1: 
+      - name: meta.block.bigraph-definition.bigrapher
+        begin: "(big)\\s+([a-z][a-zA-Z0-9_'-]*)\\s*="
+        end: ";"
+        beginCaptures:
+          "1":
             name: keyword.control.bigraph-definition.bigrapher
-          2:
+          "2":
             name: variable.other.constant.bigraph-name.bigrapher
-      - match: "(fun\\s+big)\\s+([a-z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)"
-        captures:
-          1:
+        endCaptures:
+          "0":
+            name: punctuation.terminator.bigraph-definition.bigrapher
+        patterns:
+
+          - include: "#comments"
+          - include: "#keywords"
+          - include: "#operators"
+          - include: "#entities"
+          - include: "#strings"
+      - name: meta.block.parameterized-bigraph-definition.bigrapher
+        begin: "(fun\\s+big)\\s+([a-z][a-zA-Z0-9_'-]*)\\(([a-z][a-zA-Z0-9_'-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_'-]*)*)\\)\\s*="
+        end: ";"
+        beginCaptures:
+          "1":
             name: entity.name.function.parameterized.bigraph-definition.bigrapher
-          2: 
+          "2":
             name: variable.other.constant.bigraph-name.bigrapher
-          3:
+          "3":
             name: variable.parameter.bigraph-parameter.bigrapher
+        endCaptures:
+          "0":
+            name: punctuation.terminator.bigraph-definition.bigrapher
+        patterns:
+          - include: "#comments"
+          - include: "#keywords"
+          - include: "#operators"
+          - include: "#entities"
+          - include: "#strings"
   react-definition:
     patterns:
-      - match: "(react)\\s+([a-z][a-zA-Z0-9_-]*)"
-        captures: 
-          1: 
+      - name: meta.block.reaction-rule-definition.bigrapher
+        begin: "(react)\\s+([a-z][a-zA-Z0-9_'-]*)\\s*="
+        end: ";"
+        beginCaptures:
+          1:
             name: keyword.control.reaction-rule-definition.bigrapher
           2:
             name: variable.other.constant.reaction-rule-name.bigrapher
-      - match: "(fun\\s+react)\\s+([a-z][a-zA-Z0-9_-]*)\\(([a-z][a-zA-Z0-9_-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_-]*)*)\\)"
-        captures:
+        endCaptures:
+          1:
+            name: punctuation.terminator.reaction-rule-definition.bigrapher
+        patterns:
+          - include: "#comments"
+          - include: "#keywords"
+          - include: "#operators"
+          - include: "#entities"
+          - include: "#strings"
+      - name: meta.block.parameterized-reaction-rule-definition.bigrapher
+        begin: "(fun\\s+react)\\s+([a-z][a-zA-Z0-9_'-]*)\\(([a-z][a-zA-Z0-9_'-]*(?:\\s*,\\s*[a-z][a-zA-Z0-9_'-]*)*)\\)\\s*="
+        end: ";"
+        beginCaptures:
           1:
             name: entity.name.function.parameterized.reaction-rule-definition.bigrapher
-          2: 
+          2:
             name: variable.other.constant.reaction-rule-name.bigrapher
           3:
             name: variable.parameter.reaction-rule-parameter.bigrapher
+        endCaptures:
+          1:
+            name: punctuation.terminator.reaction-rule-definition.bigrapher
+        patterns:
+          - include: "#comments"
+          - include: "#keywords"
+          - include: "#operators"
+          - include: "#entities"
+          - include: "#strings"
   brs-definition:
     patterns:
       - name: meta.block.brs-definition.bigrapher
-        begin: "\\b(begin)\\s+(brs)\\b"
+        begin: "\\b(begin)\\s+(sbrs|pbrs|abrs|brs)\\b"
         beginCaptures:
-          "1":
+          1:
             name: keyword.control.begin.bigrapher
-          "2":
+          2:
             name: keyword.control.brs.bigrapher
         end: "\\b(end)\\b"
         endCaptures:
-          "1":
+          1:
             name: keyword.control.end.bigrapher
         patterns:
           - name: keyword.control.init.brs.bigrapher
@@ -93,6 +149,8 @@ repository:
             match: "\\brules\\b"
           - name: keyword.control.predicates.brs.bigrapher
             match: "\\bpreds\\b"
+          - name: keyword.control.actions.brs.bigrapher
+            match: "\\bactions\\b"
           - include: "#comments"
           - include: "#keywords"
           - include: "#strings"
@@ -102,6 +160,8 @@ repository:
     patterns:
       - match: "\\b(string|int|float)\\b"
         name: storage.type.bigrapher
+      - match: "\\b(share|by|in|ctx|param|if)\\b"
+        name: keyword.control.other.bigrapher
   operators:
     patterns:
       - name: keyword.operator.assignment.bigrapher
@@ -114,14 +174,23 @@ repository:
         match: "\\|\\|"
       - name: keyword.operator.hiding.bigrapher
         match: "\\/"
+      - name: keyword.operator.reaction.bigrapher
+        match: "(-->|->)"
+      - name: keyword.operator.reaction-with-rate.bigrapher
+        begin: "-\\["
+        end: "\\]->"
+        patterns:
+          - include: "#entities"
   entities:
     patterns:
       - name: entity.name.class.control-name.bigrapher
-        match: "[A-Z][a-zA-Z0-9_-]*"
+        match: "[A-Z][a-zA-Z0-9_'-]*"
       - name: variable.other.readwrite.link-name.bigrapher
-        match: "[a-z][a-zA-Z0-9_-]*"
+        match: "[a-z][a-zA-Z0-9_'-]*"
       - name: constant.numeric.bigrapher
         match: "\\b\\d+\\b"
+      - name: constant.numeric.float.bigrapher
+        match: "\\b\\d+\\.\\d+\\b"
       - name: string.quoted.double.bigrapher
         begin: "\""
         end: "\""
