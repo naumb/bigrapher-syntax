@@ -11,7 +11,7 @@
         {
             "label": "Build and Install Extension",
             "type":"shell",
-            "command": "vsce pack && code --install-extension bigrapher-syntax-0.0.1.vsix ",
+            "command": "npx js-yaml syntaxes/bigrapher.tmLanguage.yaml > syntaxes/bigrapher.tmLanguage.json && vsce pack && code --install-extension bigrapher-syntax-0.0.1.vsix ",
             "group": {
                 "kind": "build",
                 "isDefault": true
